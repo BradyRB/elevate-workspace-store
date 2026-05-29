@@ -1,26 +1,320 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
+/* ─────────────────────────────────────────────
+   Elevate Workspace Design Tokens (Tailwind v4)
+   ───────────────────────────────────────────── */
 @theme inline {
+  /* shadcn pass-through */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* ── Elevate Workspace color tokens ── */
+  --color-ew-primary:                   #000000;
+  --color-ew-on-primary:                #ffffff;
+  --color-ew-primary-container:         #1b1b1c;
+  --color-ew-on-primary-container:      #858384;
+  --color-ew-primary-fixed:             #e5e2e3;
+  --color-ew-primary-fixed-dim:         #c8c6c7;
+
+  --color-ew-secondary:                 #47636c;
+  --color-ew-on-secondary:              #ffffff;
+  --color-ew-secondary-container:       #c9e7f3;
+  --color-ew-on-secondary-container:    #4d6973;
+  --color-ew-secondary-fixed:           #c9e7f3;
+  --color-ew-on-secondary-fixed:        #001f27;
+  --color-ew-secondary-fixed-dim:       #aecbd7;
+  --color-ew-on-secondary-fixed-variant:#2f4b54;
+
+  --color-ew-tertiary:                  #000000;
+  --color-ew-on-tertiary:               #ffffff;
+  --color-ew-tertiary-container:        #1a1c1d;
+  --color-ew-on-tertiary-container:     #838486;
+
+  --color-ew-surface:                   #faf9fe;
+  --color-ew-surface-dim:               #dad9df;
+  --color-ew-surface-bright:            #faf9fe;
+  --color-ew-surface-container-lowest:  #ffffff;
+  --color-ew-surface-container-low:     #f4f3f8;
+  --color-ew-surface-container:         #eeedf3;
+  --color-ew-surface-container-high:    #e9e7ed;
+  --color-ew-surface-container-highest: #e3e2e7;
+  --color-ew-surface-variant:           #e3e2e7;
+  --color-ew-surface-tint:              #5f5e5f;
+
+  --color-ew-on-surface:                #1a1b1f;
+  --color-ew-on-surface-variant:        #46474a;
+  --color-ew-on-background:             #1a1b1f;
+
+  --color-ew-outline:                   #76777b;
+  --color-ew-outline-variant:           #c7c6ca;
+
+  --color-ew-inverse-surface:           #2f3034;
+  --color-ew-inverse-on-surface:        #f1f0f5;
+  --color-ew-inverse-primary:           #c8c6c7;
+
+  --color-ew-error:                     #ba1a1a;
+  --color-ew-on-error:                  #ffffff;
+  --color-ew-error-container:           #ffdad6;
+  --color-ew-on-error-container:        #93000a;
+
+  /* ── Elevate Workspace spacing tokens ── */
+  --spacing-ew-xs:              0.25rem;   /* 4px  */
+  --spacing-ew-sm:              0.5rem;    /* 8px  */
+  --spacing-ew-md:              1rem;      /* 16px */
+  --spacing-ew-lg:              1.5rem;    /* 24px */
+  --spacing-ew-xl:              3rem;      /* 48px */
+  --spacing-ew-xxl:             5rem;      /* 80px */
+  --spacing-ew-gutter:          1.5rem;    /* 24px */
+  --spacing-ew-margin-mobile:   1rem;      /* 16px */
+  --spacing-ew-margin-desktop:  4rem;      /* 64px */
+  --spacing-ew-max-width:       90rem;     /* 1440px */
+
+  /* ── Typography ── */
+  --font-family-geist: 'Geist', system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  /* shadcn color base */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.09 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.09 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.09 0 0);
+  --primary: oklch(0.09 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.09 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.09 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.9 0 0);
+  --input: oklch(0.9 0 0);
+  --ring: oklch(0.7 0 0);
+  --radius: 0.375rem;
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.09 0 0);
+  --sidebar-primary: oklch(0.09 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.09 0 0);
+  --sidebar-border: oklch(0.9 0 0);
+  --sidebar-ring: oklch(0.7 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    font-family: var(--font-family-geist);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    background-color: var(--color-ew-surface);
+    color: var(--color-ew-on-surface);
+    font-family: var(--font-family-geist);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── Utility classes matching Stitch design ── */
+@layer utilities {
+  /* Typography utilities */
+  .text-display-lg {
+    font-size: 4rem;       /* 64px */
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-family: var(--font-family-geist);
+  }
+  .text-headline-lg {
+    font-size: 2rem;       /* 32px */
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    font-family: var(--font-family-geist);
+  }
+  .text-headline-lg-mobile {
+    font-size: 1.5rem;     /* 24px */
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    font-family: var(--font-family-geist);
+  }
+  .text-headline-md {
+    font-size: 1.25rem;    /* 20px */
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+    font-family: var(--font-family-geist);
+  }
+  .text-body-lg {
+    font-size: 1.125rem;   /* 18px */
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0;
+    font-family: var(--font-family-geist);
+  }
+  .text-body-md {
+    font-size: 1rem;       /* 16px */
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0;
+    font-family: var(--font-family-geist);
+  }
+  .text-label-caps {
+    font-size: 0.75rem;    /* 12px */
+    font-weight: 600;
+    line-height: 1.0;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: var(--font-family-geist);
+  }
+  .text-mono-label {
+    font-size: 0.8125rem;  /* 13px */
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    font-family: var(--font-family-geist);
+  }
+
+  /* Card hover with soft shadow + padding expansion */
+  .card-hover {
+    transition: box-shadow 300ms ease, padding 300ms ease;
+  }
+  .card-hover:hover {
+    box-shadow: 0 4px 20px rgba(26, 27, 31, 0.12);
+  }
+
+  /* Soft diffusion shadow */
+  .soft-shadow {
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.12);
+  }
+  .micro-shadow {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  .soft-shadow-hover:hover {
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--color-ew-surface);
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-ew-outline-variant);
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--color-ew-outline);
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* EW color shorthand utilities */
+  .bg-ew-primary              { background-color: var(--color-ew-primary); }
+  .bg-ew-on-primary           { background-color: var(--color-ew-on-primary); }
+  .bg-ew-surface              { background-color: var(--color-ew-surface); }
+  .bg-ew-surface-dim          { background-color: var(--color-ew-surface-dim); }
+  .bg-ew-surface-low          { background-color: var(--color-ew-surface-container-low); }
+  .bg-ew-surface-container    { background-color: var(--color-ew-surface-container); }
+  .bg-ew-surface-high         { background-color: var(--color-ew-surface-container-high); }
+  .bg-ew-surface-highest      { background-color: var(--color-ew-surface-container-highest); }
+  .bg-ew-surface-lowest       { background-color: var(--color-ew-surface-container-lowest); }
+  .bg-ew-secondary-container  { background-color: var(--color-ew-secondary-container); }
+  .bg-ew-secondary-fixed      { background-color: var(--color-ew-secondary-fixed); }
+
+  .text-ew-primary             { color: var(--color-ew-primary); }
+  .text-ew-on-primary          { color: var(--color-ew-on-primary); }
+  .text-ew-on-surface          { color: var(--color-ew-on-surface); }
+  .text-ew-on-surface-variant  { color: var(--color-ew-on-surface-variant); }
+  .text-ew-outline             { color: var(--color-ew-outline); }
+  .text-ew-outline-variant     { color: var(--color-ew-outline-variant); }
+  .text-ew-secondary           { color: var(--color-ew-secondary); }
+  .text-ew-on-secondary-container { color: var(--color-ew-on-secondary-container); }
+  .text-ew-on-secondary-fixed  { color: var(--color-ew-on-secondary-fixed); }
+  .text-ew-error               { color: var(--color-ew-error); }
+
+  .border-ew-outline           { border-color: var(--color-ew-outline); }
+  .border-ew-outline-variant   { border-color: var(--color-ew-outline-variant); }
+  .border-ew-primary           { border-color: var(--color-ew-primary); }
+  .border-ew-outline-variant\/30 { border-color: color-mix(in srgb, var(--color-ew-outline-variant) 30%, transparent); }
+  .border-ew-outline-variant\/50 { border-color: color-mix(in srgb, var(--color-ew-outline-variant) 50%, transparent); }
+
+  /* Page container */
+  .page-container {
+    max-width: var(--spacing-ew-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--spacing-ew-margin-mobile);
+    padding-right: var(--spacing-ew-margin-mobile);
+  }
+  @media (min-width: 768px) {
+    .page-container {
+      padding-left: var(--spacing-ew-margin-desktop);
+      padding-right: var(--spacing-ew-margin-desktop);
+    }
+  }
 }
